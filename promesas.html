@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset = "utf-8">
+        <title>Promesas</title>
+    </head>
+    <body>
+        <h1>Prueba promesas</h1>
+    <script>
+            function getJSON(url) {
+                return new Promise(function(resolve, reject) {
+                    var ajax = new XMLHttpRequest();
+                    var url = "data/earth-like-results.json";
+                    ajax.open("GET", url);
+                    ajax.send();
+                    ajax.onreadystatechange = function(data) {
+                        if (ajax.readyState == 4) {
+                            resolve(JSON.parse(ajax.responseText));
+                        };
+                    };
+                });
+            };
+            
+           getJSON("data/earth-like-results.json")
+            .then(function(mensaje){return(getJSON(mensaje.results[0]))})
+            .then(function(resultado){console.log(resultado)})
+
+       </script>
+    </body>
+    </html>
