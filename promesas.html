@@ -3,28 +3,17 @@
     <head>
         <meta charset = "utf-8">
         <title>Promesas</title>
+        <link rel="stylesheet" type="text/css" href="/static/materialize-css/dist/css/materialize.min.css">
+        <link rel="stylesheet" type="text/css" href="/static/css/style.css">
     </head>
     <body>
-        <h1>Prueba promesas</h1>
-    <script>
-            function getJSON(url) {
-                return new Promise(function(resolve, reject) {
-                    var ajax = new XMLHttpRequest();
-                    var url = "data/earth-like-results.json";
-                    ajax.open("GET", url);
-                    ajax.send();
-                    ajax.onreadystatechange = function(data) {
-                        if (ajax.readyState == 4) {
-                            resolve(JSON.parse(ajax.responseText));
-                        };
-                    };
-                });
-            };
-            
-           getJSON("data/earth-like-results.json")
-            .then(function(mensaje){return(getJSON(mensaje.results[0]))})
-            .then(function(resultado){console.log(resultado)})
-
-       </script>
+        <h1 class="white-text center-align">Planet Promises<br></h1>
+        <div class="row" id="tarjeta-planeta">
+        <!-- Aquí se imprime el contenido de cada tarjeta -->
+        </div>
+    
+        <script src="static/jquery/dist/jquery.min.js"></script>
+        <script src="static/materialize-css/dist/js/materialize.min.js"></script>
+        <script src="static/js/main.js"></script>
     </body>
     </html>
