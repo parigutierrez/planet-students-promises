@@ -1,19 +1,25 @@
-
+    // JSON para obtener información de una api con url local
     function getJSON(url) {
+
+        //Se Retorna una promesa mediante new Promise, (los parametros corresponden a los estados de promesa que son resolver y rechazar) 
         return new Promise(function(resolve, reject) {
             var ajax = new XMLHttpRequest();
-            //var url = "data/earth-like-results.json";
+           
             ajax.open("GET", url);
             ajax.send();
+
+            //El método onreadystatechange, detecta cambios en el estado.
             ajax.onreadystatechange = function(data) {
-                if (ajax.readyState == 4) {
+                //readystate tiene parámetros del 0 al 4, 4 significa que el requerimiento fue cargado y se obtuvo una respuesta.
+                if (ajax.readyState == 4) { 
                     resolve(JSON.parse(ajax.responseText));
                 };
             };
         });
     };
-    
+    //A la función getJSON se le otorga el parámetro de url
    getJSON("data/earth-like-results.json")
+   //.then funciona cuando la promesa se cumplió y necesita un parámetro que devuelva una nueva promesa a través del return.
     .then(function(planetas){return(getJSON(planetas.results.forEach(function(planeta){
         getJSON(planeta).then(function(infoPlanetas){
             obtenerDatos(infoPlanetas);
